@@ -1,0 +1,33 @@
+POST http://localhost:8080/vehicle-api/ship
+Content-Type: application/json
+
+{
+  "type": "Nagy",
+  "manufacturer": "Hajo",
+  "licensePlateNumber": "ASD-123",
+  "ownerID": 1
+}
+
+###
+
+PUT http://localhost:8080/vehicle-api/ship
+Content-Type: application/json
+
+{
+  "id": 2,
+  "type": "Focus",
+  "manufacturer": "Ford",
+  "licensePlateNumber": "ASD-125"
+}
+
+###
+GET http://localhost:8080/vehicle-api/ship
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/vehicle-api/ship/1
+Accept: application/json
+
+###
+

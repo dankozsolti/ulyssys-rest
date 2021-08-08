@@ -1,0 +1,44 @@
+POST http://localhost:8080/vehicle-api/car
+Content-Type: application/json
+
+{
+  "type": "asd",
+  "manufacturer": "fghfg",
+  "licensePlateNumber": "ASD-142",
+  "doorNumbers": 4,
+  "ownerID": 1
+}
+
+###
+
+PUT http://localhost:8080/vehicle-api/car
+Content-Type: application/json
+
+{
+  "id": 2,
+  "type": "Focus",
+  "manufacturer": "Ford",
+  "licensePlateNumber": "ASD-125"
+}
+
+###
+GET http://localhost:8080/vehicle-api/car
+Accept: application/json
+
+###
+
+GET http://localhost:8080/vehicle-api/car/o/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/vehicle-api/car/o/2
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/vehicle-api/car/1
+Accept: application/json
+
+###
+

@@ -1,0 +1,30 @@
+POST http://localhost:8080/vehicle-api/owner
+Content-Type: application/json
+
+{
+  "firstName": "Példa",
+  "lastName": "2"
+}
+
+###
+
+PUT http://localhost:8080/vehicle-api/owner
+Content-Type: application/json
+
+{
+  "id": 2
+  "firstName": "Példa",
+  "lastName": "János"
+}
+
+###
+GET http://localhost:8080/vehicle-api/owner
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/vehicle-api/owner/1
+Accept: application/json
+
+###
+
