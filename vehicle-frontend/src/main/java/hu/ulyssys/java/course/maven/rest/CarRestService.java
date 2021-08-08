@@ -1,11 +1,15 @@
 package hu.ulyssys.java.course.maven.rest;
 
+import hu.ulyssys.java.course.maven.converter.EntityToModel;
 import hu.ulyssys.java.course.maven.entity.Car;
 import hu.ulyssys.java.course.maven.rest.model.CarModel;
 import hu.ulyssys.java.course.maven.service.OwnerService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Path;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Path("/car")
 public class CarRestService extends CoreRestService<Car, CarModel>{
@@ -26,16 +30,8 @@ public class CarRestService extends CoreRestService<Car, CarModel>{
 
     @Override
     protected CarModel createModelFromEntity(Car entity) {
-        CarModel model = initNewModel();
-        model.setId(entity.getId());
-        model.setManufacturer(entity.getManufacturer());
-        model.setType(entity.getType());
-        model.setDoorNumbers(entity.getDoorNumbers());
-        model.setLicensePlateNumber(entity.getLicensePlateNumber());
-        if (entity.getOwner() != null) {
-            model.setOwnerID(entity.getOwner().getId());
-        }
-        return model;
+        return Arrays.asList(entity).stream().map(EntityToModel::createCarModelFromCarEntity).collect(
+            Collectors.toList()).stream().findFirst().orElse(null);
     }
 
     @Override

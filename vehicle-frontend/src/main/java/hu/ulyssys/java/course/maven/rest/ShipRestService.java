@@ -1,5 +1,6 @@
 package hu.ulyssys.java.course.maven.rest;
 
+import hu.ulyssys.java.course.maven.converter.EntityToModel;
 import hu.ulyssys.java.course.maven.entity.Car;
 import hu.ulyssys.java.course.maven.entity.Ship;
 import hu.ulyssys.java.course.maven.rest.model.CarModel;
@@ -8,6 +9,8 @@ import hu.ulyssys.java.course.maven.service.OwnerService;
 
 import javax.inject.Inject;
 import javax.ws.rs.Path;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @Path("/ship")
 public class ShipRestService extends CoreRestService<Ship, ShipModel>{
@@ -27,15 +30,8 @@ public class ShipRestService extends CoreRestService<Ship, ShipModel>{
 
     @Override
     protected ShipModel createModelFromEntity(Ship entity) {
-        ShipModel model = initNewModel();
-        model.setId(entity.getId());
-        model.setManufacturer(entity.getManufacturer());
-        model.setType(entity.getType());
-        model.setLicensePlateNumber(entity.getLicensePlateNumber());
-        if (entity.getOwner() != null) {
-            model.setOwnerID(entity.getOwner().getId());
-        }
-        return model;
+        return Arrays.asList(entity).stream().map(EntityToModel::createShipModelFromShipEntity).collect(
+            Collectors.toList()).stream().findFirst().orElse(null);
     }
 
     @Override
