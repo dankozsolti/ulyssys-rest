@@ -41,6 +41,15 @@ public abstract class CoreRestService<T extends AbstractVehicle, M extends CoreR
             .collect(Collectors.toList())).build();
     }
 
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findById(@PathParam("id") Long id) {
+        T entity = coreService.findById(id);
+
+        return Response.ok(createModelFromEntity(entity)).build();
+    }
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
